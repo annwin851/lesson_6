@@ -1,0 +1,51 @@
+package lesson_6.dao;
+
+import lesson_6.domain.Department;
+
+import java.sql.*;
+import java.util.Collection;
+
+public class MySQLDepartmentDao implements DepartmentDao {
+
+
+    @Override
+    public Department create(int id, String name, String city) throws SQLException{
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/employees?createDatabaseIfNotExists=true&",
+                "root",
+                "root"
+
+        )) {
+
+        String sql = "insert into department value (" + id +
+                "," + name + "," + city + ")";
+
+        Statement statement = connection.createStatement();
+        int result = statement.executeUpdate(sql);
+            System.out.println("Row affected:" + result);
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public Department update(int id, String name, String city) {
+        return null;
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public Collection<Department> findAll() {
+        return null;
+    }
+
+    @Override
+    public Department findById(int id) {
+        return null;
+    }
+}
